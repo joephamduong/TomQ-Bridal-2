@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Bridal Atelier — Design tokens
+   Giá trị mặc định bên dưới sẽ bị GHI ĐÈ động ở runtime bởi
+   giá trị lưu trong Site Settings (xem src/app/layout.tsx) —
+   nhờ vậy đổi màu/thương hiệu trong trang Admin có hiệu lực
+   ngay lập tức, không cần build lại.
+   ============================================================ */
+@theme inline {
+  --color-primary: #8b6f57;
+  --color-primary-dark: #6f594a;
+  --color-secondary: #efe6dc;
+  --color-accent: #c9a15b;
+  --color-dark: #2b2622;
+  --color-cream: #faf7f2;
+  --color-ivory: #ffffff;
+  --color-muted: #6b645c;
+  --color-line: #e7ded2;
+  --color-success: #4a7c59;
+  --color-danger: #b3453f;
+
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-soft: 0 10px 40px -12px rgba(43, 38, 34, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-dark);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+
+.container-narrow {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-radius: 2px;
+}
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+  padding: 0.8rem 1.7rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border-radius: 2px;
+}
+.btn-outline:hover {
+  background: var(--color-dark);
+  color: white;
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-accent);
+  color: white;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 2px;
+  transition: opacity 0.2s ease;
+}
+.btn-accent:hover {
+  opacity: 0.88;
+}
+
+/* Nội dung blog / mô tả sản phẩm (rich text) */
+.prose-bridal h2 {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-dark);
+  scroll-margin-top: 6rem;
+}
+.prose-bridal h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-dark);
+  scroll-margin-top: 6rem;
+}
+.prose-bridal p {
+  line-height: 1.85;
+  margin-bottom: 1.25rem;
+  color: #3f3a34;
+}
+.prose-bridal img {
+  width: 100%;
+  border-radius: 4px;
+  margin: 1.75rem 0;
+}
+.prose-bridal ul,
+.prose-bridal ol {
+  margin: 1.25rem 0 1.25rem 1.5rem;
+  line-height: 1.85;
+}
+.prose-bridal ul {
+  list-style: disc;
+}
+.prose-bridal ol {
+  list-style: decimal;
+}
+.prose-bridal a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.prose-bridal blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 1.5rem 0;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
