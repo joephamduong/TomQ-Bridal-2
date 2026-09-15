@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getHomeContent } from "@/lib/repo/settings";
 import { listProductsWithPrimaryImage } from "@/lib/repo/catalog";
 import { listBlogPosts } from "@/lib/repo/blog";

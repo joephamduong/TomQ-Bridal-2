@@ -22,7 +22,11 @@ export default function Header({ settings }: { settings: SiteSettings }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpen(false);
+  }
 
   const isAdmin = pathname?.startsWith("/admin");
   if (isAdmin) return null;

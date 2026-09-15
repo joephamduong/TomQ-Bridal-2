@@ -5,7 +5,7 @@ import { listAppointments, listContactMessages } from "@/lib/repo/customer";
 import { listProducts } from "@/lib/repo/catalog";
 import { listBlogPosts } from "@/lib/repo/blog";
 import { getSiteSettings } from "@/lib/repo/settings";
-import { formatMoney, formatDateVi } from "@/lib/utils";
+import { formatMoney } from "@/lib/utils";
 
 export default async function AdminDashboardPage() {
   const settings = getSiteSettings();

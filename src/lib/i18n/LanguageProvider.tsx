@@ -17,7 +17,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("ba_locale") as Locale | null;
-      if (saved === "vi" || saved === "en") setLocaleState(saved);
+      if (saved === "vi" || saved === "en") {
+        queueMicrotask(() => setLocaleState(saved));
+      }
     } catch {
       // localStorage có thể không khả dụng — bỏ qua, dùng mặc định "vi"
     }

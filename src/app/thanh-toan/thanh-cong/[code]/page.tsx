@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { getOrderByCodeAndPhone } from "@/lib/repo/orders";
 import { getSiteSettings } from "@/lib/repo/settings";
 import { formatMoney } from "@/lib/utils";

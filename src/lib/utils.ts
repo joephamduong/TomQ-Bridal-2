@@ -55,7 +55,7 @@ export function ensureHeadingIds(html: string): string {
   return html.replace(/<h([23])([^>]*)>(.*?)<\/h\1>/gi, (full, level, attrs, inner) => {
     if (/id="/.test(attrs)) return full;
     const text = inner.replace(/<[^>]+>/g, "");
-    let id = slugifyVi(text) || `muc-${level}`;
+    const id = slugifyVi(text) || `muc-${level}`;
     let unique = id;
     let i = 2;
     while (used.has(unique)) {

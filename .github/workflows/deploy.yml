@@ -1,0 +1,53 @@
+name: Deploy to Ubuntu VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Production VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Executing remote SSH commands using SSH key
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script_stop: true 
+          script: |
+            echo "🚀 Bắt đầu quá trình Deploy TomQ Bridal lên VPS..."
+            
+            # Chuyển vào thư mục dự án trên VPS
+            cd /var/www/tomqbridal || exit 1
+            
+            # Cập nhật mã nguồn mới nhất từ nhánh main
+            echo "📥 Kéo code mới nhất từ GitHub..."
+            git reset --hard
+            git pull origin main
+            
+            # Cài đặt thư viện
+            echo "📦 Cài đặt dependencies..."
+            npm install --production=false
+            
+            # Build ứng dụng Next.js
+            echo "🔨 Build Next.js..."
+            npm run build
+            
+            # Kiểm tra nếu DB chưa khởi tạo thì chạy seed
+            if [ ! -f "./data/app.db" ]; then
+              echo "🌱 Khởi tạo dữ liệu mẫu (seed)..."
+              npm run seed
+            fi
+            
+            # Tải lại ứng dụng bằng PM2 (Zero-Downtime)
+            echo "🔄 Khởi động lại ứng dụng qua PM2..."
+            pm2 reload ecosystem.config.cjs || pm2 start ecosystem.config.cjs
+            pm2 save
+            
+            echo "✅ Deploy hoàn tất thành công!"

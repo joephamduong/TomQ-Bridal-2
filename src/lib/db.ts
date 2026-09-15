@@ -10,7 +10,6 @@ import path from "node:path";
 const DATABASE_PATH = process.env.DATABASE_PATH || "./data/app.db";
 
 declare global {
-  // eslint-disable-next-line no-var
   var __bridalDb: DatabaseSync | undefined;
 }
 
